@@ -1,0 +1,73 @@
+{
+  "name": "fiber-dev",
+  "version": "0.0.0",
+  "description": "Node.js isolation primitive to run asynchronous worker-like operations without leaking async IO",
+  "author": "Phil Pluckthun <phil@kitten.sh>",
+  "source": "./src/index.ts",
+  "main": "./dist/fiber-dev",
+  "module": "./dist/fiber-dev.mjs",
+  "types": "./dist/fiber-dev.d.ts",
+  "files": [
+    "LICENSE.md",
+    "README.md",
+    "CHANGELOG.md",
+    "dist/"
+  ],
+  "scripts": {
+    "build": "rollup -c ./scripts/rollup.config.mjs",
+    "postbuild": "tsc --noEmit ./dist/fiber-dev.d.ts",
+    "check": "tsc --noEmit",
+    "clean": "rimraf dist node_modules/.cache",
+    "prepublishOnly": "run-s clean build check",
+    "prepare": "node ./scripts/prepare.js || true",
+    "changeset:version": "changeset version && pnpm install --lockfile-only",
+    "changeset:publish": "changeset publish"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/fiber-dev.d.ts",
+      "import": "./dist/fiber-dev.mjs",
+      "require": "./dist/fiber-dev.js",
+      "source": "./src/index.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "trailingComma": "es5"
+  },
+  "lint-staged": {
+    "*.{js,ts,json,md}": "prettier --write"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "repository": "https://github.com/kitten/fiber-dev",
+  "bugs": {
+    "url": "https://github.com/kitten/fiber-dev/issues"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-block-scoping": "^7.25.9",
+    "@babel/plugin-transform-typescript": "^7.26.7",
+    "@changesets/cli": "^2.27.1",
+    "@changesets/get-github-info": "^0.6.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/node": "^18.19.0",
+    "dotenv": "^16.4.7",
+    "lint-staged": "^15.4.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.4.2",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.32.1",
+    "rollup-plugin-cjs-check": "^1.0.3",
+    "rollup-plugin-dts": "^6.1.1",
+    "typescript": "^5.7.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

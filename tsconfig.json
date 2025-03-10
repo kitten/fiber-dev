@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "types": ["@types/node"],
+    "baseUrl": "./",
+    "rootDir": ".",
+    "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "remove",
+    "noEmit": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "allowJs": true,
+    "lib": ["es2016"],
+    "jsx": "react-jsx",
+    "module": "es2022",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "target": "esnext",
+    "strict": true,
+    "noImplicitAny": false,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "isolatedModules": true
+  },
+  "include": ["src", "packages"]
+}
