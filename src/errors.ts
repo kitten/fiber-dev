@@ -89,4 +89,8 @@ export class FiberError extends Error {
   toString() {
     return `${this.message.trim()}\n\n${this.trace}`;
   }
+
+  toJSON() {
+    return this.toString();
+  }
 }
