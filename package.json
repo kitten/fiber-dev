@@ -14,11 +14,12 @@
     "dist/"
   ],
   "scripts": {
+    "test": "vitest run",
     "build": "rollup -c ./scripts/rollup.config.mjs",
     "postbuild": "tsc --noEmit ./dist/fiber-dev.d.ts",
     "check": "tsc --noEmit",
     "clean": "rimraf dist node_modules/.cache",
-    "prepublishOnly": "run-s clean build check",
+    "prepublishOnly": "run-s clean build check test",
     "prepare": "node ./scripts/prepare.js || true",
     "changeset:version": "changeset version && pnpm install --lockfile-only",
     "changeset:publish": "changeset publish"
@@ -64,10 +65,19 @@
     "rollup": "^4.32.1",
     "rollup-plugin-cjs-check": "^1.0.3",
     "rollup-plugin-dts": "^6.1.1",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.8"
   },
   "publishConfig": {
     "access": "public",
     "provenance": true
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "esbuild"
+    ],
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }
