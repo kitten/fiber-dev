@@ -516,7 +516,7 @@ function fiberWatchdog<T>(
 
     return watchdogResult.promise;
   } finally {
-    fiber.root.active = false;
+    fiber.root.active = true;
   }
 }
 
