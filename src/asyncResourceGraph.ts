@@ -35,8 +35,8 @@ class AsyncResourceObserver {
     this.callback = callback;
   }
 
-  _onExecute(executionNode: AsyncResourceNode, node: AsyncResourceNode) {
-    this.callback(AsyncResourceFlags.INIT, executionNode);
+  _onInit(node: AsyncResourceNode) {
+    this.callback(AsyncResourceFlags.INIT, node);
     if (node.fiberId === this.fiberId) {
       this.observe(node);
     }
@@ -247,7 +247,7 @@ export class AsyncResourceNode {
       triggerNode.triggerTargets.set(asyncId, node);
     }
     if (this.notifyObserver) {
-      this.notifyObserver._onExecute(this, node);
+      this.notifyObserver._onInit(node);
     }
   }
 
@@ -273,7 +273,10 @@ export class AsyncResourceNode {
   }
 
   toString() {
-    return `[async ${this.type || `Fiber: ${this.fiberId}`}]`;
+    const name = this.type
+      ? `${this.type}(${this.asyncId})`
+      : `Fiber: ${this.fiberId}`;
+    return `[async ${name}]`;
   }
 }
 
@@ -513,7 +516,7 @@ function fiberWatchdog<T>(
 
     return watchdogResult.promise;
   } finally {
-    fiber.root.active = false;
+    fiber.root.active = true;
   }
 }
 
