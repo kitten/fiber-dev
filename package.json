@@ -1,6 +1,6 @@
 {
   "name": "fiber-dev",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Node.js isolation primitive to run asynchronous worker-like operations without leaking async IO",
   "author": "Phil Pluckthun <phil@kitten.sh>",
   "source": "./src/index.ts",
